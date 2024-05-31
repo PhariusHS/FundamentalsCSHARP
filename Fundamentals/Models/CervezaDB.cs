@@ -40,7 +40,31 @@ namespace Fundamentals.Models
                 connection.Close();
             }
 
+
+
+
             return cervezas; 
+        }
+
+        public void Add(Cerveza cerveza) // Metodo clase agregar datos
+        {
+            string query = "insert into cervezas (nombre, marca, mililitros, alcohol) " + 
+                "values (@nombre, @marca, @mililitros, @alcohol)";
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@nombre", cerveza.Nombre);
+                command.Parameters.AddWithValue("@marca", cerveza.Marca);
+                command.Parameters.AddWithValue("@mililitros", cerveza.Mililitros);
+                command.Parameters.AddWithValue("@alcohol", cerveza.Alcohol);                                                                  
+                connection.Open();
+
+                    command.ExecuteNonQuery();
+
+                connection.Close();
+            }
+
         }
 
     }
