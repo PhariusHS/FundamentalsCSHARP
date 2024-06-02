@@ -67,5 +67,28 @@ namespace Fundamentals.Models
 
         }
 
+
+        public void Edit(Cerveza cerveza) // Metodo clase editar datos
+        {
+            string query = "update cervezas set nombre=@nombre, marca=@marca, mililitros=@mililitros, " +
+                "alcohol = @alcohol where id = @id";
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@nombre", cerveza.Nombre);
+                command.Parameters.AddWithValue("@marca", cerveza.Marca);
+                command.Parameters.AddWithValue("@mililitros", cerveza.Mililitros);
+                command.Parameters.AddWithValue("@alcohol", cerveza.Alcohol);
+                command.Parameters.AddWithValue("@id", cerveza.ID);
+                connection.Open();
+
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
+
+        }
+
     }
 }

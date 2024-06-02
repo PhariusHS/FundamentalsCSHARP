@@ -9,18 +9,28 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
            
-            CervezaDB cerveza = new CervezaDB();
+            CervezaDB cervezaDB = new CervezaDB();
 
             //insert/post data on DB
 
-            Cerveza cervezaPost = new Cerveza(500, "Sol", "Rubia Sol");
-            cervezaPost.Alcohol = 6.0;
+            /* 
+             Cerveza cervezaPost = new Cerveza(500, "Sol", "Rubia Sol");
+             cervezaPost.Alcohol = 6.0;
 
-            cerveza.Add(cervezaPost);
+             cerveza.Add(cervezaPost);
 
+             */
+            
+
+            Cerveza cervezaEd = new Cerveza(600, "Sol", "Rubia Sol");
+            cervezaEd.Alcohol = 3.2;
+                cervezaEd.ID = 6;
+
+            cervezaDB.Edit(cervezaEd);
+            
 
             //basic GET data from DB
-            var cervezas = cerveza.Get();
+            var cervezas = cervezaDB.Get();
 
             foreach (var c in cervezas) 
             {
